@@ -1,0 +1,29 @@
+﻿<Window x:Class="WPFTreeView.View.AddNewObjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFTreeView.View"
+        mc:Ignorable="d"
+        Title="AddNewObjectWindow" Height="300" Width="300"
+        Name="AddNewObjectWin"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Vertical"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Width="200">
+            <TextBlock Text="Type"/>
+            <TextBox Name="TypeBlock" Text ="{Binding ObjectType}"/>
+            <TextBlock Text="Product"/>
+            <TextBox Name="ProductBlock" Text ="{Binding ObjectProduct}"/>
+
+        </StackPanel>
+        <Button Grid.Row="1" Content="Добавить Объект" Command="{Binding AddNewObject}"
+            CommandParameter="{Binding ElementName=AddNewObjectWin}"/>
+    </Grid>
+</Window>

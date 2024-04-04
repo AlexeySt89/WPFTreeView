@@ -1,0 +1,44 @@
+﻿<Window x:Class="WPFTreeView.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPFTreeView.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <TreeView  ItemsSource="{Binding AllObjects}" x:Name="ViewAllObjects" Grid.Row="0" 
+           Margin="10,10,10,10" Grid.ColumnSpan="2" FontSize="20"
+           >
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Attributes}">
+                    <TextBlock Text="{Binding Type}" />
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" />
+                                <TextBlock Text="{Binding Value}" Margin="5,0,0,0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal"
+            HorizontalAlignment="Center"
+            Height="25" Width="415">
+            <Button Content="Новый объект" Command="{Binding OpenAddNewObjectWindow}"/>
+            <Button Content="Новый атрибут" Command="{Binding OpenAddNewAttributeWindow}"/>
+            <Button Content="Удалить объект" Command="{Binding OpenDeleteObjectWindow}"/>
+            <Button Content="Удалить атрибут" Command="{Binding OpenDeleteAttributeWindow}"/>
+            <Button Content="Сохранить" Command="{Binding Serialize}"/>
+        </StackPanel>
+    </Grid>
+</Window>
